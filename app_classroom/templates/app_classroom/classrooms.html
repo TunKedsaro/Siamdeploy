@@ -5,9 +5,14 @@
 {% block content %}
     <h1>Classroom</h1>
     <h1>{{classrooms}}</h1>
-    {% for i in classrooms %}
-        <h1>{{i.room}}</h1>
-        <h1>{{i.date}}</h1>
-        <h1>{{i.image}}</h1>
+    {% for img in classrooms %}
+        <div class="ice_cream">
+            <h1>{{img.room}}</h1>
+            <h1>{{img.date}}</h1>
+            <!-- <h1>{{img.image}}</h1> -->
+            <a href="{% url 'classroom' img.id %}">
+                <img src="data:image/png;base64,{{img.image}}" alt="Base64 Image" width="25%">
+            </a>
+        </div>
     {% endfor %}
 {% endblock %}
