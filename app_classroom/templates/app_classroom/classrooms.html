@@ -3,12 +3,15 @@
 {% block site_title %} About | {% endblock %}
 
 {% block content %}
-    <h1>Classroom</h1>
-    <h1>{{classrooms}}</h1>
     {% for img in classrooms %}
-        <h1>{{img.room}}</h1>
-        <h1>{{img.date}}</h1>
-        <h1>{{img.image}}</h1>
-        <img src="data:image/png;base64,{{img.image}}" alt="Base64 Image" width="25%">
+        <div class="ice_cream">
+            <h2>id : {{ img.id}}</h2>
+            <h2>Room : {{ img.room}}</h2>
+            <h2>Date : {{ img.date}}</h2>
+            <!-- <img src="data:image/png;base64,{{img.image}}" alt="Base64 Image" width="25%"> -->
+            <a href="{% url 'classroom' 1}">
+                <img src="data:image/png;base64,{{img.image}}" alt="Base64 Image" width="25%">
+            </a>
+        </div>
     {% endfor %}
 {% endblock %}
