@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'app_general/main.css' %}">
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <!-- header and navbar -->
+        {% include 'app_general/components/site_header.html' %}
+        <!-- header and navbar -->
+        <!-- main and content -->
+        <main class="page-main">
+            <div class="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </main>
+        <!-- main and content -->
+        <!-- footer and credit -->
+        <!-- {% include 'app_general/components/site_footer.html' %} -->
+        <!-- footer and credit -->
+    </div>
+</body>
+</html>

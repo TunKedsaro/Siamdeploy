@@ -1,0 +1,101 @@
+body{
+    margin:0px;
+    padding:0px;
+    height: 100%;
+    box-sizing: border-box;
+}
+/* main structure */
+.grid {
+    display: grid;
+    grid-template-columns: 100% ;
+    grid-template-rows: 70px auto auto;
+    grid-template-areas: 
+        'header'
+        'main'
+        'footer';
+    min-height:100vh;
+}
+.page-header {
+    grid-area: header;
+    background-color: rgb(255, 255, 255);
+    border:solid rgba(175, 175, 175, 0.196) 1px;
+}
+.page-main {
+    grid-area: main;
+    background-color: rgb(255, 255, 255);
+    /* border:solid black 3px; */
+    min-height: calc(100vh - 270px);
+}
+.page-footer {
+    grid-area: footer;
+    background-color: rgb(255, 255, 255);
+    /* border:solid black 3px; */
+}
+.content {
+    color: #242424;
+    font-weight: 600;
+    text-align: left;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 10px;
+}
+/* main structure */
+/* navbar */
+.menu-bar {
+    background-color: rgb(40,135,19,255);
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.1);
+}
+.item {
+    color: rgb(255, 255, 255);
+    border-color: black;
+    font-size: 18px;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 14px 10px;
+    margin:5px;
+    border-radius: 5px;
+    /* border:solid black 1px; */
+    text-decoration: none;
+    
+}
+.item.title {
+    font-size: 25px;
+    font-weight: 600;
+}
+.item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+/* navbar */
+/* main and content */
+.ice_cream{
+    border:solid rgba(42, 97, 72, 0.612) 3px;
+    background-color: rgba(40, 135, 19, 0.161);
+    margin-bottom:10px;
+    padding:0px 15px 15px 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px 4px rgba(73, 200, 143, 0.175);
+}
+/* main and content */
+/* fotter and credit */
+.footercontent{
+    /* border: 1px solid #000000; */
+    background-color: antiquewhite;
+    text-align: center;
+    padding:10px;
+    box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.1);
+}
+.page_box{
+    margin-bottom: 20px;
+}
+.page_box a{
+    /* border:solid black 1px; */
+    display: inline-box;
+    margin:10px;
+    /* padding:5px; */
+}
+/* fotter and credit */
