@@ -6,5 +6,6 @@ def classrooms(request):
     return render(request,'app_classroom/classrooms.html')
 
 def classroom(request,classroom_id):
-    print(classroom_id)
-    return render(request, 'app_classroom/classrooms.html')
+    print("classroom input id:",classroom_id)
+    context = {'num':classroom_id}
+    return render(request, 'app_classroom/classroom.html',context)
