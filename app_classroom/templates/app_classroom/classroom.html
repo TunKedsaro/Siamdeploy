@@ -3,5 +3,25 @@
 {% block site_title %} Classroom Details {% endblock %}
 
 {% block content %}
-    <h1>Classroom</h1>
+    <h2>Room: {{ selected_image.room }}</h2>
+    <h2>Date: {{ selected_image.date|date:"d/m/y" }}</h2>
+    {% for img in images %}
+        <div class="ice_cream" style="display: flex;">
+            <div style="flex: 0.4; padding-right: 10px;">
+                <h2>Time : {{ img.date|date:"H:i:s" }}</h2>
+                <img src="data:image/png;base64,{{ img.image }}" alt="Base64 Image" width="75%">
+            </div>            
+            <div style="flex: 0.4; padding-right: 10px;">
+                <h2>Prediction</h2>
+                <img src="https://imgs.search.brave.com/fo3kYmywKdTPlvRdTt01eNJy-bydweO5Q64rCRQtx5s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxNy8w/OS8xMC8xOC8yNS9x/dWVzdGlvbi0yNzM2/NDgwXzY0MC5qcGc" alt="Base64 Image" width="75%">
+            </div>
+            <div style="flex: 0.6; padding-left: 10px;">
+                <h2>Detail</h2>
+                <h3>Date from xxxx to xxxx</h3>
+                <h3>Time from xxxx to xxxx</h3>
+                <h3>จำนวนคนทั้งหมด xx</h3>
+                <h3>จำนวนคนที่มา xx จำนวนคนที่ขาด xx</h3>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
