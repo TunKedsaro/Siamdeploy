@@ -8,7 +8,8 @@
     {% for img in images %}
         <div class="ice_cream" style="display: flex;">
             <div style="flex: 0.4; padding-right: 10px;">
-                <h2>id : {{img.id}}</h2>
+                <!-- <h2>id : {{img.id}}</h2> -->
+                <!-- <h2>Time : {{ img.date|date:"d/m/y H:i:s" }}</h2> -->
                 <h2>Time : {{ img.date|date:"H:i:s" }}</h2>
                 <img src="data:image/png;base64,{{ img.image }}" alt="Base64 Image" width="75%">
             </div>            
