@@ -3,7 +3,7 @@ from django.http.response import HttpResponse
 from .models import Student
 from django.db.models import Min
 from django.db.models.functions import TruncDate
-
+from zcode.yolo_model3 import img_predict
 # data = [
 #     {'id':1,'room':1,'date':datetime(2024,8,1),'time':'120000','image':'iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACFSURBVHgBXVBJEsMwCBMe//+xIVxLWUSc9sAwgAQScgEfE4ECMPfKEXJHZniErCw0ANaAJvSwspGwE50N7W0yGyYrwZuNnzN2es5LvsnCHxizbfpLD7ODxqgRynq/NeXgamPlugis9+MumAma83T/1Gs0vEClL4k0dt7Ds/OScnk3cf6JL1E8ilsFjEzgAAAAAElFTkSuQmCC'},
 #     {'id':2,'room':2,'date':datetime(2024,8,1),'time':'121000','image':'iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACkSURBVHgBTVDbDkMhCIPF/0/2qweNl4c5WiDbg0G0LS36vOUztootkbEuq23R7jXP7d43Nvs6yMGTIBnbP5coqh8SGtDDWTZd7VCJClWdfMcBcJIt3RvedyjFpAABTEU76WenpyCqhSrfGzxBaYQ3YTB4zt6mMkOrcVDCx7MIYmqroEydKaEEUK0k05el+6p9/YEkAqnkin7rybG1EmEIEDM9wF93oeMQPWy5kgAAAABJRU5ErkJggg=='},
@@ -33,15 +33,28 @@ def classrooms(request):
 def classroom(request, classroom_id):
     print("->classroom input id:", classroom_id)
     selected_image = Student.objects.get(id=classroom_id)
+    print("->selected_image",selected_image)
     
     truncated_date = selected_image.date.date()
+    print("->truncated_date",truncated_date)
     
     images = Student.objects.filter(
         room=selected_image.room,
         date__date=truncated_date
     ).order_by('date')
+    print("->images",images)
+    lst = [8,17]
+    # for i in images:
+    #     print("->",i)
+    #     # print(i.room)
+    #     # print(i.image)
+    #     output_img, output_student = img_predict(i.image)
+    #     print(output_student)
+    #     lst.append(output_student)
     
-    context = {'images': images, 'selected_image': selected_image}
+    context = {'images': images, 
+               'selected_image': selected_image,
+               'lst':lst}
     return render(request, 'app_classroom/classroom.html', context)
 
 

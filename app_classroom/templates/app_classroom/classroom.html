@@ -5,7 +5,10 @@
 {% block content %}
     <h2>Room: {{ selected_image.room }}</h2>
     <h2>Date: {{ selected_image.date|date:"d/m/y" }}</h2>
-    {% for img in images %}
+    <h3>{{images}}</h3>
+    <h3>{{selected_image}}</h3>
+    <h3>{{lst}}</h3>
+    {% for img in len(images) %}
         <div class="ice_cream" style="display: flex;">
             <div style="flex: 0.4; padding-right: 10px;">
                 <!-- <h2>id : {{img.id}}</h2> -->
@@ -26,4 +29,6 @@
             </div>
         </div>
     {% endfor %}
+
+
 {% endblock %}
