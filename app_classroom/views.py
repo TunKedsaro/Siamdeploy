@@ -3,7 +3,8 @@ from django.http.response import HttpResponse
 from .models import Student
 from django.db.models import Min
 from django.db.models.functions import TruncDate
-from zcode.yolo_model3 import img_predict
+from zcode.yolo_model3 import img_predict,pil_image_to_base64
+import matplotlib.pyplot as plt
 # data = [
 #     {'id':1,'room':1,'date':datetime(2024,8,1),'time':'120000','image':'iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACFSURBVHgBXVBJEsMwCBMe//+xIVxLWUSc9sAwgAQScgEfE4ECMPfKEXJHZniErCw0ANaAJvSwspGwE50N7W0yGyYrwZuNnzN2es5LvsnCHxizbfpLD7ODxqgRynq/NeXgamPlugis9+MumAma83T/1Gs0vEClL4k0dt7Ds/OScnk3cf6JL1E8ilsFjEzgAAAAAElFTkSuQmCC'},
 #     {'id':2,'room':2,'date':datetime(2024,8,1),'time':'121000','image':'iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACkSURBVHgBTVDbDkMhCIPF/0/2qweNl4c5WiDbg0G0LS36vOUztootkbEuq23R7jXP7d43Nvs6yMGTIBnbP5coqh8SGtDDWTZd7VCJClWdfMcBcJIt3RvedyjFpAABTEU76WenpyCqhSrfGzxBaYQ3YTB4zt6mMkOrcVDCx7MIYmqroEydKaEEUK0k05el+6p9/YEkAqnkin7rybG1EmEIEDM9wF93oeMQPWy5kgAAAABJRU5ErkJggg=='},
@@ -43,18 +44,25 @@ def classroom(request, classroom_id):
         date__date=truncated_date
     ).order_by('date')
     print("->images",images)
-    lst = [8,17]
-    # for i in images:
-    #     print("->",i)
-    #     # print(i.room)
-    #     # print(i.image)
-    #     output_img, output_student = img_predict(i.image)
-    #     print(output_student)
-    #     lst.append(output_student)
+
+    student_data = []
+    for image in images:
+        output_img, output_student = img_predict(image.image)
+        # plt.imshow(output_img)
+        # plt.show()
+        student_data.append({
+            'image':image,
+            'output_image':pil_image_to_base64(output_img),
+            'num_student':output_student
+        })
+    # print(student_data)
+
+
+
     
-    context = {'images': images, 
-               'selected_image': selected_image,
-               'lst':lst}
+    context = {'student_data': student_data, 
+               'selected_image': selected_image
+    }
     return render(request, 'app_classroom/classroom.html', context)
 
 
