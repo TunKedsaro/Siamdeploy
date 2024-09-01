@@ -45,8 +45,8 @@ model = YOLOv10(model_path)
 #     print("There are no box")
 #     return None
 
-def predict_label_with_boxes():
-    img = plt.imread(r"C:\Users\Acer\Desktop\MSiam\zcode\073124_131500.jpg")
+def predict_label_with_boxes(img):
+    # img = plt.imread(r"C:\Users\Acer\Desktop\MSiam\zcode\073124_131500.jpg")
     results = model(source=img,
                     conf=0.15
     )
@@ -68,9 +68,55 @@ def predict_label_with_boxes():
                          bbox=dict(facecolor='red', alpha=0.5))
     plt.imshow(img)
     plt.show()
+    return len(box)
 
 
 # r = predict_label(r"C:\Users\Acer\Desktop\labelapp - Copy\media\dGVfMjAyNy5qcGc_1KGml9L.jpg")
 # print(r)
 
-predict_label_with_boxes()
+
+import base64
+import matplotlib.pyplot as plt
+def image_to_base64(image_path):
+    with open(image_path, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
+    return encoded_string
+base64img = image_to_base64(r"C:\Users\Acer\Desktop\MSiam\zcode\073124_131500.jpg")
+# base64img
+
+
+from PIL import Image
+import io
+
+def base64_to_image(encoded_string):
+    image_data = base64.b64decode(encoded_string)
+    image = Image.open(io.BytesIO(image_data))
+    return image
+# predict_label_with_boxes()
+
+img = base64_to_image(base64img)
+# plt.imshow(img)
+# plt.show()
+
+results = model(source=img,
+                conf=0.15
+)
+# Set the figure size before plotting
+fig, ax = plt.subplots(1, figsize=(12, 8))  # Adjust the figsize as needed
+ax.imshow(img)
+
+for result in results:
+    if result.boxes:
+        boxes = result.boxes.xyxy.tolist()  # xyxy format for drawing boxes
+        clases = [int(cls) for cls in result.boxes.cls.tolist()]
+
+        for box, cls in zip(boxes, clases):
+            x_min, y_min, x_max, y_max = box
+            rect = patches.Rectangle((x_min, y_min), x_max - x_min, y_max - y_min,
+                                    linewidth=1, edgecolor='r', facecolor='none')
+            ax.add_patch(rect)
+            plt.text(x_min, y_min, f'', color='white', fontsize=12,
+                    bbox=dict(facecolor='red', alpha=0.5))
+# plt.imshow(img)
+# plt.show()
+print(len(boxes))
