@@ -8,22 +8,26 @@
     <!-- <h3>student_data : {{ student_data }}</h3> -->
     {% for img in student_data %}
         <div class="ice_cream" style="display: flex;">
-            <div style="flex: 0.4; padding-right: 10px;">
+            <div style="flex: 0.3; padding-right: 10px;">
                 <!-- <h2>id : {{img.id}}</h2> -->
                 <!-- <h2>Time : {{ img.date|date:"d/m/y H:i:s" }}</h2> -->
                 <h2>Time : {{ img.image.date|date:"H:i:s" }}</h2>
                 <img src="data:image/png;base64,{{ img.image.image }}" alt="Base64 Image" width="75%">
             </div>            
-            <div style="flex: 0.4; padding-right: 10px;">
+            <div style="flex: 0.3; padding-right: 10px;">
                 <h2>Prediction</h2>
                 <img src="data:image/png;base64,{{ img.output_image }}" alt="Base64 Image" width="75%">
             </div>
-            <div style="flex: 0.6; padding-left: 10px;">
+            <div style="flex: 0.2; padding-left: 10px;">
                 <h2>Detail</h2>
                 <h3>Date from xxxx to xxxx</h3>
                 <h3>Time from xxxx to xxxx</h3>
                 <h3>จำนวนคนทั้งหมด {{ img.num_student }}</h3>
                 <h3>จำนวนคนที่มา xx จำนวนคนที่ขาด xx</h3>
+            </div>
+            <div style="flex: 0.2; padding-left: 10px;">
+                <h2>Seat diagrame</h2>
+                {% include 'app_classroom/components/seat_diagram.html' %}
             </div>
         </div>
         <!-- <h3>{{img}}</h3> -->
