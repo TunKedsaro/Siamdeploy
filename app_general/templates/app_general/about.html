@@ -3,7 +3,162 @@
 {% block site_title %} About | {% endblock %}
 
 {% block content %}
+
+<style>
+    .on{
+        color:red;
+    }
+    .off{
+        color:black;
+    }
+</style>
+
 <div>
     <h2>About Siam</h2>
+    <h3>{{seat}}</h3>
+    <div>
+        {% for i in seat %}
+            <p>{{i.A2}}</p>
+        {% endfor %}
+    </div>
 </div>
+
+<h1>{{seat.A1}}</h1>
+
+<div>
+    <table border='1'>
+        <thead>
+            <tr>
+                <th></th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>_</th>
+                <th>5</th>
+                <th>6</th>
+                <th>_</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>A</td>
+                <td><span class="{% if seat.A1 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.A2 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.A3 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.A4 %}on{% else %}off{% endif %}">x</span></td>                
+                <td> </td>
+                <td><span class="{% if seat.A5 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.A6 %}on{% else %}off{% endif %}">x</span></td>
+                <td> </td>
+                <td><span class="{% if seat.A7 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.A8 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span></span></td>
+            </tr>        
+            <tr>
+                <td>B</td>
+                <td><span class="{% if seat.B1 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.B2 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.B3 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.B4 %}on{% else %}off{% endif %}">x</span></td>                
+                <td> </td>
+                <td><span class="{% if seat.B5 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.B6 %}on{% else %}off{% endif %}">x</span></td>
+                <td> </td>
+                <td><span class="{% if seat.B7 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.B8 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span></span></td>
+            </tr>            
+            <tr>
+                <td>C</td>
+                <td><span class="{% if seat.C1 %}on{% else %}off{% endif %}"></span></td>
+                <td><span class="{% if seat.C2 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.C3 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.C4 %}on{% else %}off{% endif %}">x</span></td>                
+                <td> </td>
+                <td><span class="{% if seat.C5 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.C6 %}on{% else %}off{% endif %}">x</span></td>
+                <td> </td>
+                <td><span class="{% if seat.C7 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.C8 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span></span></td>
+            </tr>            
+            <tr>
+                <td>D</td>
+                <td><span class="{% if seat.D1 %}on{% else %}off{% endif %}"></span></td>
+                <td><span class="{% if seat.D2 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.D3 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.D4 %}on{% else %}off{% endif %}">x</span></td>                
+                <td> </td>
+                <td><span class="{% if seat.D5 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.D6 %}on{% else %}off{% endif %}">x</span></td>
+                <td> </td>
+                <td><span class="{% if seat.D7 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.D8 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span></span></td>
+            </tr>         
+            <tr>
+                <td>E</td>
+                <td><span class="{% if seat.E1 %}on{% else %}off{% endif %}"></span></td>
+                <td><span class="{% if seat.E2 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.E3 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.E4 %}on{% else %}off{% endif %}"></span></td>                
+                <td> </td>
+                <td><span class="{% if seat.E5 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.E6 %}on{% else %}off{% endif %}">x</span></td>
+                <td> </td>
+                <td><span class="{% if seat.E7 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.E8 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span></span></td>
+            </tr>          
+            <tr>
+                <td>F</td>
+                <td><span class="{% if seat.F1 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.F2 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.F3 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.F4 %}on{% else %}off{% endif %}">x</span></td>                
+                <td> </td>
+                <td><span class="{% if seat.F5 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.F6 %}on{% else %}off{% endif %}">x</span></td>
+                <td> </td>
+                <td><span class="{% if seat.F7 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.F8 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span></span></td>
+            </tr>          
+            <tr>
+                <td>G</td>
+                <td><span class="{% if seat.G1 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.G2 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.G3 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.G4 %}on{% else %}off{% endif %}">x</span></td>                
+                <td> </td>
+                <td><span class="{% if seat.G5 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.G6 %}on{% else %}off{% endif %}">x</span></td>
+                <td> </td>
+                <td><span class="{% if seat.G7 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.G8 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span></span></td>
+            </tr>           
+            <tr>
+                <td>H</td>
+                <td><span class="{% if seat.H1 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.H2 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.H3 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.H4 %}on{% else %}off{% endif %}">x</span></td>                
+                <td> </td>
+                <td><span class="{% if seat.H5 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.H6 %}on{% else %}off{% endif %}">x</span></td>
+                <td> </td>
+                <td><span class="{% if seat.H7 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.H8 %}on{% else %}off{% endif %}">x</span></td>
+                <td><span class="{% if seat.H9 %}on{% else %}off{% endif %}">x</span></td>
+            </tr>    
+
+        </tbody>
+    </table>
+</div>
+
 {% endblock %}
