@@ -16,16 +16,25 @@ model_path = r"C:\Users\Acer\Desktop\MSiam\zcode\models\200824.0558.pt"
 model = YOLOv10(model_path)
 
 def base64_to_image(encoded_string):
+    # Decode base64 and open the image
     image_data = base64.b64decode(encoded_string)
     image = Image.open(io.BytesIO(image_data)).convert('RGB')
-    resized_image = np.array(image.resize((3840, 2160), Image.ANTIALIAS))
-    return resized_image
+    
+    # Resize the image to the target size (2160, 3840)
+    target_size = (3840, 2160)  # PIL expects (width, height)
+    resized_image = image.resize(target_size, Image.Resampling.LANCZOS)
+    
+    # Convert to NumPy array
+    image_np = np.array(resized_image)
+    
+    return image_np
 
 def fn(contents):
     # with open(r"C:\Users\Acer\Desktop\MSiam\zcode\img5.txt",'r') as f:
     #     contents = f.read()
 
     img = base64_to_image(contents)
+    print(img.shape)
     results = model(source=img, conf=0.15)
     # Set up the figure for plotting
     fig, ax = plt.subplots(1, figsize=(12, 8), frameon=False)
@@ -45,7 +54,7 @@ def fn(contents):
 
     seat = ["A1","A2","A3","A4","A5","A6","A7","A8"]
     seat = {i:False for i in seat}
-    print(seat)
+    # print(seat)
 
         # Draws Frames on images
     for area_name, area in areas.items():
@@ -105,8 +114,50 @@ def fn(contents):
     
     return annotated_img, len(boxes), seat
 
-
-# a,b,c = fn()
+# a,b,c = fn('abc')
 # plt.imshow(a)
+# plt.show()
 # print(b)
 # print(c)
+
+
+
+# import configparser
+# import ast  
+
+# config = configparser.ConfigParser()
+# config.read(r"C:\Users\Acer\Desktop\MSiam\zcode\seat_data.ini")
+
+# seat_str = config.get('room1', 'seat')
+
+# seat_list = ast.literal_eval(seat_str)
+
+# print(seat_list)
+
+# import configparser
+# import json
+
+# # Initialize the config parser
+# config = configparser.ConfigParser()
+
+# # Read the .ini file
+# config.read(r"C:\Users\Acer\Desktop\MSiam\zcode\seat_data.ini")
+
+# # Get the areas string from the ini file
+# areas_str = config.get('room1', 'areas')
+
+# # Convert the string back to a dictionary
+# areas = json.loads(areas_str)
+
+# # Print the areas dictionary
+# print(areas)
+
+# import configparser
+# import json
+
+# config = configparser.ConfigParser()
+# config.read(r"C:\Users\Acer\Desktop\MSiam\zcode\seat_data.ini")
+
+# areas_str = config.get('room1', 'areas')
+# areas = json.loads(areas_str)  # Convert JSON string to dictionary
+# print(areas)
